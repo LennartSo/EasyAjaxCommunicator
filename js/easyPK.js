@@ -1,4 +1,11 @@
-// eDataT (Easy PHP Kommunikation)
+/*
+ * EasyAjaxCommunicator
+ *
+ * @author Lennart Sommerfeld
+ * @copyright (c) Lennart Sommerfeld
+ * @link http://lennart-sommerfeld.de
+ * @version 1.0
+ */
 
 
 XMLHttpRequest.prototype.targetFunction = '';
