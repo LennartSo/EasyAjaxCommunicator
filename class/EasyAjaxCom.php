@@ -11,19 +11,21 @@
 class EasyAjaxCom {
 
     private $responseVarArray = null;
+    private $activ = false;
 
     function __construct(){
         // Überprüfe ob ein JOSON String geschickt wurde
-        $this->JsonArray = $this->getDataFromResponse();
+        $this->responseVarArray = $this->getDataFromResponse();
     }
 
     private function getDataFromResponse(){
         if(isset($_GET['EasyAjaxJSONString'])){
-
+            $this->activ = true;
             return json_decode($_GET['EasyAjaxJSONString'], true);
         }
 
         if(isset($_POST['EasyAjaxJSONString'])){
+            $this->activ = true;
             return json_decode($_POST['EasyAjaxJSONString'], true);
         }
 
@@ -32,7 +34,9 @@ class EasyAjaxCom {
 
     // Funktionsname regestrieren
     function regFunction ($functionName) {
-        $this->checkAjaxResponse($functionName);
+        if($this->activ == true) {
+            $this->checkAjaxResponse($functionName);
+        }
     }
 
     // Wenn eine Funktion gefunden wurde ausführen
@@ -44,8 +48,8 @@ class EasyAjaxCom {
 
     // Überprüfe ob der übergebene Name der Funktionen übereinstimmt
     function checkAjaxResponse($tempfunctionName){
-        if (array_key_exists($tempfunctionName, $this->JsonArray) == true) {
-            $this->executeFunction($tempfunctionName,$this->JsonArray[$tempfunctionName]);
+        if (array_key_exists($tempfunctionName, $this->responseVarArray) == true) {
+            $this->executeFunction($tempfunctionName,$this->responseVarArray[$tempfunctionName]);
             return true;
         }
         return false;
