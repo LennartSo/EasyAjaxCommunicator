@@ -6,7 +6,7 @@
  * @link http://lennart-sommerfeld.de
  * @version 1.0
  */
-
+/* best way to communicate with database*/
 
 XMLHttpRequest.prototype.targetFunction = '';
 XMLHttpRequest.prototype.targetFunctionPara = '';
